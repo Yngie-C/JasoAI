@@ -1,5 +1,7 @@
 # 자소AI
 
+<img src="https://user-images.githubusercontent.com/45377884/84596752-805d0d80-ae9a-11ea-90a2-c40c06d43794.png" alt="logo4" style="zoom: 150%;" />
+
 자기소개서 작성 도우미 프로그램 자소AI
 
 제작 기간 : 2020.5 ~ 2020.6.12
