@@ -15,7 +15,7 @@ def auto_enter(text):
 	return "\n\n".join(text)
 
 def main(temperature = 0.7, top_p = 0.8, top_k = 40, tmp_sent = "", text_size = 100, loops = -1,
-	load_path = './checkpoint/KoGPT2_checkpoint_long.tar', ctx= 'cpu',cachedir='~/kogpt2/', samples="./samples"):
+	load_path = 'load_path_of_your_model', ctx= 'cpu',cachedir='~/kogpt2/', samples="path to save samples"):
 
 	pytorch_kogpt2 = {
 		'url': 'https://kobert.blob.core.windows.net/models/kogpt2/pytorch/pytorch_kogpt2_676e9bcfa7.params',
@@ -74,6 +74,11 @@ def main(temperature = 0.7, top_p = 0.8, top_k = 40, tmp_sent = "", text_size = 
 	tok = SentencepieceTokenizer(tok_path)
 	num = 0
 
+	"""
+	자소서가 저장될 수 있는 딕셔너리(테이블) 생성 후
+	자소서가 생성될 때마다 추가될 수 있도록 함
+	입력한 개수만큼 자소서가 생성된 후에는 딕셔너리를 반환
+	"""
 	sent_dict = {}
 
 	if loops != -1:
@@ -93,14 +98,8 @@ def main(temperature = 0.7, top_p = 0.8, top_k = 40, tmp_sent = "", text_size = 
 		sent = sample_sequence(model, tok, vocab, sent, text_size, temperature, top_p, top_k)
 		sent = sent.replace("<unused0>", "\n") # 비효율적이지만 엔터를 위해서 등장
 		sent = auto_enter(sent)
-		# print(sent)
 		
 		sent_dict[num] = sent
-		now = [int(n) for n in os.listdir(samples)]
-		now = max(now)
-		f = open(samples + str(now + 1), 'w', encoding="utf-8")
-		f.write(sent)
-		f.close()
 
 		if num:
 			num += 1
