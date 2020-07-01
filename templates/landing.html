@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+{% block content %}
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>자소Ai</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/normalize.css') }}?after">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}?after">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/owl.css') }}?after">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/animate.css') }}?after">
+	<link href="{{ url_for('static', filename='font-awesome-4.1.0/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/et-icons.css') }}?after">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/tooltip.css') }}?after">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/lightbox.css') }}?after">
+	<link id="main" rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/publisher.css') }}?after">
+</head>
+<body>
+	<nav class="navbar navbar-default">
+		<div class="container">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<a class="navbar-brand" href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='img/logo4.png') }}" style="width:110px;height:45px;" alt=""></a>
+			</div>
+
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav navbar-right main-nav">
+					<li><a href="#features" class="scrollto">Features</a></li>
+					<li><a href="#reviews" class="scrollto">About</a></li>
+					<li><a href="#contact" class="scrollto">Contact</a></li>
+					<li><a href="{{ url_for('myresume') }}" class="scrollto">내 자소서</a></li>
+					{% if not session['user_id'] %}
+					<li><a href="{{ url_for('login') }}" class="btn btn-blue">로그인</a></li>
+					{% elif session['user_id'] %}
+					<li><a href="{{ url_for('logout') }}" class="btn btn-blue">로그아웃</a></li>
+					{% endif %}
+				</ul>
+			</div><!-- /.navbar-collapse -->
+		</div><!-- /.container-fluid -->
+	</nav>
+
+	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		<ul class="nav navbar-nav navbar-right main-nav">
+		</ul>
+	</div><!-- /.navbar-collapse -->
+
+	<section id="book">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6" style="display:inline;width:50%">
+					<h6 class="heading wow animated fadeInUp" style="font-size:60px;"><b>취업 자소서 <br/><br/>걱정 마세요</b></h6>
+					<h4 class="subheading wow animated fadeInUp" style="font-size:20px;"><b>첫 마디</b>를 입력하면 <b>자소Ai</b>가 도와드려요!</h4>
+					<a href="{{ url_for('login') }}" class="btn btn-blue">자소서 작성하러 가기</a>
+				</div>
+				<!-- <div style="display:inline;width:50%;"><img src="{{ url_for('static', filename='img/macbook.png') }}" width=600 alt=""></div> -->
+				<div class="col-md-6" style="display:inline;width:50%">
+					<div class="book-preview">
+						<img src="{{ url_for('static', filename='img/macbook.png') }}" class="background-device" width=600 alt="">
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	<section id="features" class="call-to-action">
+		<div class="container2">
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2 text-left wow animated fadeInUp" style="margin-left:150px;width:100%">
+					<br>
+					<h2 class="heading2" style="color:white">Guide</h2>
+					<br>
+					<img src="{{ url_for('static', filename='img/card3.png') }}" width="400" alt="">
+					<img src="{{ url_for('static', filename='img/card1.png') }}" width="400" alt="">
+					<img src="{{ url_for('static', filename='img/card2.png') }}" width="400" alt="">
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="reviews" class="reviews">
+		
+	<!-- <section class="call-to-action"> -->
+		<div class="row">
+			<div class="col-md-8 text-center" style="margin-left:250px;">
+				<a href="#" class="btn btn-white sample-button" style="color:#0F4C81"><b><h2>370K+</h2></b><br>합격 자소서</a>
+				<a href="#" class="btn btn-white sample-button" style="color:#0F4C81"><b><h2>50K+</h2></b><br>이용자</a>
+				<a href="#" class="btn btn-white sample-button" style="color:#0F4C81"><b><h2>250억+</h2></b><br>매출액</a>
+				<a href="#" class="btn btn-white sample-button" style="color:#0F4C81"><b><h2>120억+</h2></b><br>투자유치</a>
+			</div>
+	</div>
+	</section>
+
+	<section class="call-to-action">
+		<div class="container">
+			<div class="row">	
+				<div class="col-sm-6 text-left">
+					<h2 class="heading" style="color:white;">About Us</h2>
+				</div>
+				<div class="col-sm-6 text-right text-left-mobile">
+					<div class="rate-amount text-right">
+						<b>팀원</b> <span>이지수 김준호 이기창 최민경</span>
+					</div>
+					<div class="rating">
+						<span class="rate active"></span>
+						<span class="rate active"></span>
+						<span class="rate active"></span>
+						<span class="rate active"></span>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="owl-reviews">
+					<div class="item">
+						<div class="review text-center wow animated fadeInUp">
+							<img src="{{ url_for('static', filename='img/jisu.jpg') }}" class="reviewer-pic"alt="">
+							<h4 class="subheading reviewer-name"><b>이지수</b></h4>
+							<h6 class="subheading muted reviewer-city">PM</h6>
+							<div class="rating">
+								<span class="rate active"></span>
+								<span class="rate active"></span>
+								<span class="rate active"></span>
+								<span class="rate active"></span>
+								<span class="rate active"></span>
+							</div>
+							<p class="small">프로젝트 기획, 데이터 전처리, 웹디자인</p>
+						</div>
+					</div>
+					<div class="item">
+						<div class="review text-center wow animated fadeInUp">
+							<img src="{{ url_for('static', filename='img/junho.jpg') }}" class="reviewer-pic" alt="">
+							<h4 class="subheading reviewer-name"><b>김준호</b></h4>
+							<h6 class="subheading muted reviewer-city">개발자</h6>
+							<div class="rating">
+								<span class="rate active"></span>
+								<span class="rate active"></span>
+								<span class="rate active"></span>
+								<span class="rate active"></span>
+								<span class="rate active"></span>
+							</div>
+							<p class="small">데이터 크롤링, DB설계, 데이터 전처리, 웹개발</p>
+						</div>
+					</div>
+					<div class="item">
+						<div class="review text-center wow animated fadeInUp">
+							<img src="{{ url_for('static', filename='img/gichang.jpg') }}" class="reviewer-pic" alt="">
+							<h4 class="subheading reviewer-name"><b>이기창</b></h4>
+							<h6 class="subheading muted reviewer-city">개발자</h6>
+							<div class="rating">
+								<span class="rate active"></span>
+								<span class="rate active"></span>
+								<span class="rate active"></span>
+								<span class="rate active"></span>
+								<span class="rate active"></span>
+							</div>
+							<p class="small">자연어 모델 튜닝, 데이터 전처리, 웹개발</p>
+						</div>
+					</div>
+					<div class="item">
+						<div class="review text-center wow animated fadeInUp">
+							<img src="{{ url_for('static', filename='img/minkyung.jpg') }}" class="reviewer-pic" alt="">
+							<h4 class="subheading reviewer-name"><b>최민경</b></h4>
+							<h6 class="subheading muted reviewer-city">개발자</h6>
+							<div class="rating">
+								<span class="rate active"></span>
+								<span class="rate active"></span>
+								<span class="rate active"></span>
+								<span class="rate active"></span>
+								<span class="rate active"></span>
+							</div>
+							<p class="small">DB설계, 데이터 전처리, 웹디자인, 웹개발</p>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="sample-form">
+		<div class="container">
+			<form id="submit-frm" action="php/sampleMail.php" method="post" class="sample-form">
+				<div class="row">
+					<div class="col-sm-5">
+						<input type="text" class="form-control" name="firstname" placeholder="Name" data-validation="required">
+					</div>
+					<div class="col-sm-5">
+						<input type="text" class="form-control" name="email" placeholder="Email" data-validation="email">
+					</div>
+					<div class="col-sm-2">
+						<input type="submit" class="btn btn-blue sign-up-button sample-button-done" value="Subscribe">
+					</div>
+				</div>
+			</form>
+		</div>
+	</section>
+
+	<section id="contact">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 text-left text-center-mobile wow animated fadeInUp contact-details">
+					<h3 class="heading no-margin wow animated fadeInUp">Contact 자소 AI team</h3>
+					<h4 class="subheading muted no-margin wow animated fadeInUp">Say hi or ask something.</h4>
+					<div class="details">
+						<h6 class="heading no-margin">Nicolas Adamson</h6>
+						<p class="small muted wow animated fadeInUp no-margin">3125 Flanigan Oaks Drive <br>
+						Capitol Heights, MD 20027</p>
+					</div>
+					<div class="details">
+						<h4 class="subheading accent no-margin wow animated fadeInUp">+ 301 324 9131 <br>
+						info@nicolasadamson.com</h4>
+					</div>
+				</div>
+				<form action="php/newMail.php" method="post" class="mail-form">
+					<div class="col-md-6" style="width:50%">
+						<div class="row">
+							<div class="col-sm-6">
+								<input name="firstname" type="text" class="form-control" placeholder="Name" data-validation="required">
+							</div>
+							<div class="col-sm-6">
+								<input name="email" type="text" class="form-control" placeholder="Email" data-validation="email">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12">
+								<input name="subject" type="text" class="form-control" placeholder="Subject" data-validation="required">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12">
+								<textarea name="body" class="form-control" rows="10" placeholder="Message. . ." data-validation="required"></textarea>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12.text-left">
+								<input type="submit" class="btn btn-blue contact-button" value="Send">
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</section>
+
+	<footer>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6 text-left text-center-mobile">
+					<p class="copyright small muted">Copyright © 2020 자소Ai - All rights reserved!</p>
+				</div>
+				<div class="col-sm-6 text-right text-center-mobile">
+					<div class="social">
+						<a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+						<a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+						<a href="#" class="dribbble"><i class="fa fa-dribbble"></i></a>
+						<a href="#" class="vine"><i class="fa fa-vine"></i></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	</div>
+
+	<div class="notification-box"><span>Sending...</span></div>
+	<div class="mobile-nav">
+		<ul class="menu">
+			
+		</ul>
+	</div>
+
+
+	<script src="{{ url_for('static', filename='js/jquery-1.11.1.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/owl.carousel.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/lightbox.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/wow.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/jquery.onepagenav.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/core.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/tooltip.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/jquery.form-validator.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/preloader.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+
+</body>
+</html>
+{% endblock %}

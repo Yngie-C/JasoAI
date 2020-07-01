@@ -1,0 +1,12 @@
+simplejson
+oauth2client
+flask
+flask-MySQL == 1.4.0
+flask-restful == 0.3.8
+gluonnlp >= 0.8.3
+mxnet
+sentencepiece == 0.1.90
+torch >= 1.4.0
+transformers == 2.4.1
+tqdm
+tensorboardX

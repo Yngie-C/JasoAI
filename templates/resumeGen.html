@@ -1,0 +1,193 @@
+{% block content %}
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>My resume</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/animate.css') }}?after">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}?after">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/owl.css') }}?after">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/animate.css') }}?after">
+	<link href="{{ url_for('static', filename='font-awesome-4.1.0/css/font-awesome.min.css') }}?after" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/et-icons.css') }}?after">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/tooltip.css') }}?after">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/lightbox.css') }}?after">
+	<link id="main" rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/publisher.css') }}?after">
+	<style>
+		#userInputText::placeholder {
+			color : white;
+			font-size: 20px;
+		}
+	</style>
+</head>
+<body>
+	<nav class="navbar navbar-default">
+		<div class="container">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<a class="navbar-brand" href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='img/logo4.png') }}" style="width:110px;height:45px;" alt=""></a>
+			</div>
+
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav navbar-right main-nav">
+					<li><a href="{{ url_for('myresume') }}" class="scrollto">내 자소서</a></li>
+					<li><a href="{{ url_for('logout') }}">로그아웃</a></li>
+				</ul>
+			</div><!-- /.navbar-collapse -->
+		</div><!-- /.container-fluid -->
+	</nav>
+
+	<section id="contact">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 text-left text-center-mobile wow animated fadeInUp contact-details">
+					<h2 class="heading no-margin wow animated fadeInUp" style="font-size:54px; color: #2F3E46;"><b>자기소개서 작성하기</b></h2>
+					<br/>
+				</div>
+			</div>
+			<br/><br/>
+			
+			<div id="resume-box" class="col-md-12" style="width:1100px;height:150px;display:block">
+				<div class="row">
+					<span style="color:#aaa;position:relative;left:670px;font-size:17px;" id="counter">(0자/ 최대 200자)</span><br/>
+					<form method="POST">
+						{% if sentences == 0 %}
+						<textarea style="width:800px;height:70px;border-color:black;resize:none;" id="DOC_TEXT" class="DOC_TEXT" id="userInputText" name="DOC_TEXT" placeholder=" 문장 생성을 위해 자기소개서를 작성해 주세요."></textarea>
+						<button type="submit" class="btn btn-blue" style="width:200px;height:70px;margin:0 0 0 5px;position:absolute;">문장 생성하기</button>
+						{% else %}
+						<textarea style="width:800px;height:70px;border-color:black;resize:none;background-color:gray;" id="DOC_TEXT" class="DOC_TEXT" id="userInputText" name="DOC_TEXT" placeholder=" 생성된 문장을 [이어쓰기] 또는 [클립보드 복사] 해 주세요. 다시 작성하려면 뒤로가기 해 주세요" disabled>{{ sentences }}</textarea>
+						<button type="submit" class="btn btn-blue" style="width:200px;height:70px;margin:0 0 0 5px;position:absolute;">문장 생성하기</button>
+						{% endif %}
+					</form>
+				</div>
+
+				<form method="POST">
+					<!-- <div class="select-container"> -->
+						<!-- <div class="select-radio-tile-group"> -->
+					<div class="row">
+					{% for text in msg.values() %}
+					<div class="select-input-container" style="width:1000px;height:150px">
+						<input id="con1" class="select-radio-button" type="radio" name="sentences" value='{{text}}' />
+						<div class="select-radio-tile">
+							<label for="walk" class="select-radio-tile-label" style="text-align: left;margin:20px;">{{ text }}</label>
+						</div>
+					</div>
+					{% endfor %}
+					</div>
+					<div style="width:700px;margin-left:130px;">
+						<button class="btn btn-blue" style="width:200px;height:60px;display:inline;position:relative;left:150px;top:25px;">이어쓰기</button>
+					</div>
+					<!-- </div> -->
+				</form>
+				<button class="btn btn-blue" style="width:200px;height:60px;display:inline;position:relative;left:500px;top:-75px;" id="copy"><a href="#doc_text">클립보드 복사</a></button>
+			</div>
+		</div>
+	</section>
+
+	<div style="width:100%;height:1200px;"></div>
+	
+	<section id="contact">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 text-left text-center-mobile wow animated fadeInUp contact-details" style="width:1100px;">
+					<h2 class="heading no-margin wow animated fadeInUp"><b>자기소개서 저장</b></h2>
+					<br/>
+					<form action="{{ url_for('insert') }}" method="POST" style="width:1100px;">
+						<input type="text" id="title" name="user_title" style="visibility:hidden;display:block">
+						<textarea style="width:860px;height:300px;border-color:black;font-size:16px; resize: none;" class="DOC_TEXT" id="doc_text" name="user_text" style="font-size:1.2em" placeholder="복사된 내용을 이 곳에 붙여넣기 하세요."></textarea>
+						<button class="btn btn-blue" onclick="myFunction()" type="submit" style="height:300px;margin:0 0 0 5px;position:absolute;">저장하기</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+
+	<footer>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6 text-left text-center-mobile">
+					<p class="copyright small muted">Copyright © 2020 자소Ai - All rights reserved!</p>
+				</div>
+				<div class="col-sm-6 text-right text-center-mobile">
+					<div class="social">
+						<a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+						<a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+						<a href="#" class="dribbble"><i class="fa fa-dribbble"></i></a>
+						<a href="#" class="vine"><i class="fa fa-vine"></i></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	
+
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script>
+        //서류사항 textarea 체크
+        $('#DOC_TEXT').keyup(function (e){
+            var content = $(this).val();
+            $('#counter').html("("+content.length+"자 / 최대 200자)");    //글자수 실시간 카운팅
+        
+            if (content.length > 200){
+                alert("최대 200자까지 입력 가능합니다.");
+                $(this).val(content.substring(0, 200));
+                $('#counter').html("(200 / 최대 200자)");
+            }
+        });
+
+		function getValue() {
+			var texts = document.getElementsByName('sentences');
+
+			for (var i=0; i < texts.length; i++) {
+				if (texts[i].checked) {
+					alert("클립보드에 복사되었습니다.")
+					return texts[i].value;
+				}
+			}
+		}
+
+		document.querySelector("#copy").addEventListener("click", function() {
+			var tempElem = document.createElement('textarea');
+			tempElem.value = getValue();
+			document.body.appendChild(tempElem);
+
+			tempElem.select();
+			document.execCommand("copy");
+			document.body.removeChild(tempElem);
+		});
+
+
+		function myFunction() {
+			var person = prompt("저장할 자소서 제목(수정이 불가하오니 신중하게 적어주세요) : ", "예시) 나의 첫 자소서");
+			while (person == null || person == ""){
+				var r = confirm("제목을 적어주세요");
+				if (r == true){
+					person = prompt("저장할 자소서 제목(수정이 불가하오니 신중하게 적어주세요) : ", "예시) 나의 첫 자소서");
+				}else{
+					alert('내용 수정은 자소서 관리페이지에서 가능합니다. 제목을 적어주세요.');
+					person = prompt("저장할 자소서 제목(수정이 불가하오니 신중하게 적어주세요) : ", "예시) 나의 첫 자소서");
+				}	
+			}
+			document.getElementById("title").value = person;
+		}
+
+		function noEvent() {
+			if (event.keyCode == 116 || event.keyCode == 9) {
+				alert('현재 페이지에서는 새로고침이 금지되어 있습니다.');
+				return false;
+			}
+			else if (event.ctrlKey && (event.keyCode == 78 || event.keyCode == 82)) {
+				return false;
+			}
+		}
+		document.onkeydown = noEvent();
+    </script>
+
+</body>
+</html>
+{% endblock %}

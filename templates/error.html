@@ -1,0 +1,8 @@
+<script>
+    alert('{{ msg }}'); 
+    {% if url : %} 
+        document.location.href="{{url}}";
+    {% else : %}
+        history.back();
+    {% endif %}
+</script>

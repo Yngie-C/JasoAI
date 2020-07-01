@@ -1,0 +1,109 @@
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Colorlib Templates">
+    <meta name="author" content="Colorlib">
+    <meta name="keywords" content="Colorlib Templates">
+
+    <!-- Title Page-->
+    <title>자소Ai 추가정보 입력</title>
+
+    <!-- Icons font CSS-->
+    <link href="{{ url_for('static', filename='css/vendor/mdi-font/css/material-design-iconic-font.min.css') }}?after" rel="stylesheet" media="all">
+    <link href="{{ url_for('static', filename='css/vendor/font-awesome-4.7/css/font-awesome.min.css') }}?after" rel="stylesheet" media="all">
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+
+    <!-- Vendor CSS-->
+    <link href="{{ url_for('static', filename='css/vendor/select2/select2.min.css') }}?after" rel="stylesheet" media="all">
+    <link href="{{ url_for('static', filename='css/vendor/datepicker/daterangepicker.css') }}?after" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="{{ url_for('static', filename='css/signup.css') }}?after" rel="stylesheet" media="all">
+</head>
+
+<body>
+    <div class="page-wrapper bg-blue p-t-100 p-b-100 font-robo">
+        <div class="wrapper wrapper--w680">
+            <div class="card card-1">
+                <div class="card-heading"></div>
+                <div class="card-body">
+                    <h2 class="title">추가 정보 입력</h2>
+                    <form method="POST" action="#">
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <input class="input--style-1 js-datepicker" type="text" name="birthdate" placeholder="생년월일">
+                                    <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <div class="rs-select2 js-select-simple select--no-search">
+                                        <select name="gender">
+                                            <option disabled="disabled" selected="selected">성별</option>
+                                            <option value='1'>남자</option>
+                                            <option value='2'>여자</option>
+                                            <option value='3'>LGBTQ</option>
+                                        </select>
+                                        <div class="select-dropdown"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <div class="rs-select2 js-select-simple select--no-search">
+                                <select name="classes">
+                                    <option disabled="disabled" selected="selected">전공계열</option>
+                                    <option value='1'>인문계열</option>
+                                    <option value='2'>경상계열</option>
+                                    <option value='3'>사회계열</option>
+                                    <option value='4'>교육계열</option>
+                                    <option value='5'>자연계열</option>
+                                    <option value='6'>공학계열</option>
+                                    <option value='7'>의학계열</option>
+                                    <option value='8'>예체능계열</option>
+                                    <option value='9'>기타</option>
+                                </select>
+                                <div class="select-dropdown"></div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                        </div>
+                        <div class="p-t-20">
+                            <button class="btn btn--radius btn--green" type="submit" onclick="myFunction()">가입하기</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Jquery JS-->
+    <script src="{{ url_for('static', filename='css/vendor/jquery/jquery.min.js') }}?after"></script>
+    <!-- Vendor JS-->
+    <script src="{{ url_for('static', filename='css/vendor/select2/select2.min.js') }}?after"></script>
+    <script src="{{ url_for('static', filename='css/vendor/datepicker/moment.min.js') }}?after"></script>
+    <script src="{{ url_for('static', filename='css/vendor/datepicker/daterangepicker.js') }}?after"></script>
+
+    <!-- Main JS-->
+    <script src="{{ url_for('static', filename='js/global.js') }}?after"></script>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script>
+        function myFunction() {
+            alert(document.getElementById('birthdate').value);
+        }
+            
+        
+        
+    </script>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+
+</html>
+<!-- end document-->
+{% endblock %}

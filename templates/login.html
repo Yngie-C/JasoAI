@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+{% block content %}
+<html lang="en">
+<head>
+	<title>자소Ai Log In</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/vendor/bootstrap/css/bootstrap.min.css') }}?after">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='font-awesome-4.1.0/css/font-awesome.min.css') }}?after">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='fonts/Linearicons-Free-v1.0.0/icon-font.min.css') }}?after">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/vendor/animate/animate.css') }}?after">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/vendor/css-hamburgers/hamburgers.min.css') }}?after">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/vendor/animsition/css/animsition.min.css') }}?after">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/vendor/select2/select2.min.css') }}?after">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/vendor/daterangepicker/daterangepicker.css') }}?after">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/util.css') }}?after">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}?after">
+<!--===============================================================================================-->
+</head>
+<body>
+	
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
+				<form class="login100-form validate-form" method="POST" action='#'>
+					<span class="login100-form-title p-b-33">
+						Account Login
+					</span>
+
+					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+						<input class="input100" type="text" id="email" name="email" placeholder="Email">
+						<span class="focus-input100-1"></span>
+						<span class="focus-input100-2"></span>
+					</div>
+
+					<div class="wrap-input100 rs1 validate-input" data-validate="Password is required">
+						<input class="input100" type="password" id="pwd" name="pass" placeholder="Password">
+						<span class="focus-input100-1"></span>
+						<span class="focus-input100-2"></span>
+					</div>
+
+					<div class="container-login100-form-btn m-t-20">
+						<input class="login100-form-btn" type="submit" value="로그인">
+
+					</div>
+
+					<div class="text-center">
+						<span class="txt1">
+							아직 회원이 아니신가요?
+						</span>
+
+						<a href="{{ url_for('signup') }}" class="txt2 hov1">
+							가입하기
+						</a>
+					</div>
+				</form>
+				<div class="g-signin2" data-onsuccess="onSignIn"></div>
+			</div>
+		</div>
+	</div>
+	
+
+
+
+<!--===============================================================================================-->
+	<script src="{{ url_for('static', filename='css/vendor/jquery/jquery-3.2.1.min.js') }}?after"></script>
+<!--===============================================================================================-->
+	<script src="{{ url_for('static', filename='css/vendor/animsition/js/animsition.min.js') }}?after"></script>
+<!--===============================================================================================-->
+	<script src="{{ url_for('static', filename='css/vendor/bootstrap/js/popper.js') }}?after"></script>
+	<script src="{{ url_for('static', filename='css/vendor/bootstrap/js/bootstrap.min.js') }}?after"></script>
+<!--===============================================================================================-->
+	<script src="{{ url_for('static', filename='css/vendor/select2/select2.min.js') }}?after"></script>
+<!--===============================================================================================-->
+	<script src="{{ url_for('static', filename='css/vendor/daterangepicker/moment.min.js') }}?after"></script>
+	<script src="{{ url_for('static', filename='css/vendor/daterangepicker/daterangepicker.js') }}?after"></script>
+<!--===============================================================================================-->
+	<script src="{{ url_for('static', filename='css/vendor/countdowntime/countdowntime.js') }}?after"></script>
+<!--===============================================================================================-->
+	<script src="{{ url_for('static', filename='js/main2.js') }}?after"></script>
+
+
+
+	<script>
+		if ('{{ msg }}' != ''){
+            alert('{{ msg }}'); 
+        }
+	</script>
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,193 @@
+<!DOCTYPE HTML>
+{% block content %}
+<html>
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>My resume</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/normalize.css') }}?after">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}?after">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/owl.css') }}?after">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/animate.css') }}?after">
+	<link href="{{ url_for('static', filename='font-awesome-4.1.0/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/et-icons.css') }}?after">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/tooltip.css') }}?after">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/lightbox.css') }}?after">
+	<link id="main" rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/publisher.css') }}?after">
+	
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?after"> 
+
+</head>
+<body>
+	<nav class="navbar navbar-default">
+		<div class="container">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<a class="navbar-brand" href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='img/logo4.png') }}" style="width:110px;height:45px;" alt=""></a>
+			</div>
+
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav navbar-right main-nav">
+					<li><a href="{{ url_for('writeResume') }}" class="scrollto">자소서 작성</a></li>
+					{% if not session['user_id'] %}
+					<li><a href="{{ url_for('login') }}" class="btn btn-blue">로그인</a></li>
+					{% elif session['user_id'] %}
+					<li><a href="{{ url_for('logout') }}" class="btn btn-blue">로그아웃</a></li>
+					{% endif %}
+				</ul>
+			</div><!-- /.navbar-collapse -->
+		</div><!-- /.container-fluid -->
+	</nav>
+
+	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		<ul class="nav navbar-nav navbar-right main-nav">
+		</ul>
+	</div><!-- /.navbar-collapse -->
+
+	<section id="contact">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 text-left text-center-mobile wow animated fadeInUp contact-details">
+					<h2 class="heading no-margin wow animated fadeInUp" style="font-size:54px; color: #2F3E46;"><b>나의 자기소개서</b></h2>
+					<br/>
+				</div>
+			</div>
+			<br/><br/>
+			<p style="font-size:20px; color: #2F3E46; position: absolute; top:350px;">수정 및 보기는 제목을 클릭해 주세요.</p>
+			<div class="row">
+				
+				{% for i in range(length) %}
+				<div class="col-md-4 col-sm-4" id="reloading">
+					<div class="feature-center animate-box" data-animate-effect="fadeInUp">
+						<button class="titleBtn{{i}} btn btn-blue" name="user_resume_title" style="background-color: Transparent; color: #2F3E46; font-weight: bolder; font-size:24px; width:300px; display: inline-block;">{{ user_data[i][0] }}</button>
+						<form action="{{ url_for('delete') }}" method="POST">
+							<p class="userText{{i}}" style="font-size:18px; width:350px;  line-height:1.8em; overflow:hidden; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; padding-left: 10px; padding-right: 30px;">{{ user_data[i][1] }}</p>
+							<!-- <span style="font-size:16px;"><a href="#">내용보기</a></span>&nbsp;&nbsp;&nbsp; -->
+							<div style="float: right;">
+								<input type="submit" class="btn btn-blue" onclick="doDelete();" name="deact" value="{{user_data[i][0]}} 삭제" style="position:relative; font-size: 14px; bottom:30px; min-width:100px; display:inline-block;"/>
+							</div>
+						</form>
+					</div>
+				</div>
+				{% endfor %}
+
+			</div>
+		</div>
+	</section>
+	<section>
+		<div class="container" style="position:relative;top:-200px;">
+			<h2 class="heading no-margin wow animated fadeInUp" style="font-size:32px; padding-bottom: 30px;"><b>자기소개서 수정 / 저장</b></h2>
+			<form action="{{ url_for('update') }}" method="POST">
+				<input type="submit" value="수정하기" class="btn btn-blue" onclick="doUpdate();" style="position: absolute; top:-25px; left:350px; font-size: 14px;"/>
+				<p style="font-size:20px;margin-top:auto;margin-bottom:auto;">제목</p>
+				<textarea id='titleSection' name="user_title" style="background-color:transparent; border-style: hidden; border-bottom:3px solid #0F4C81; resize:none; width:400px; height:40px; font-size:16px;" disabled></textarea>
+				<br/>
+				<p style="font-size:20px;margin-top:auto;margin-bottom:auto;">본문</p>
+				<textarea id='textsSection' name="user_text" style="resize:none; width:100%; height:300px;font-size:16px;"></textarea>
+			</form>
+		</div>
+	</section>
+
+	<footer>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6 text-left text-center-mobile">
+					<p class="copyright small muted">Copyright © 2020 자소Ai - All rights reserved!</p>
+				</div>
+				<div class="col-sm-6 text-right text-center-mobile">
+					<div class="social">
+						<a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+						<a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+						<a href="#" class="dribbble"><i class="fa fa-dribbble"></i></a>
+						<a href="#" class="vine"><i class="fa fa-vine"></i></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<script src="{{ url_for('static', filename='js/jquery-1.11.1.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/owl.carousel.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/lightbox.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/wow.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/jquery.onepagenav.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/core.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/tooltip.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/jquery.form-validator.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/preloader.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+
+	
+	<script>
+		var length = {{length}};
+		$('.titleBtn0').on('click', function(){
+			var title = $('.titleBtn0').text();
+			var texts = $('.userText0').text();
+			$('#titleSection').empty();
+			$('#titleSection').append(title);
+			$('#textsSection').empty();
+			$('#textsSection').append(texts);
+		});
+		$('.titleBtn1').on('click', function(){
+			var title = $('.titleBtn1').text();
+			var texts = $('.userText1').text();
+			$('#titleSection').empty();
+			$('#titleSection').append(title);
+			$('#textsSection').empty();
+			$('#textsSection').append(texts);
+		});
+		$('.titleBtn2').on('click', function(){
+			var title = $('.titleBtn2').text();
+			var texts = $('.userText2').text();
+			$('#titleSection').empty();
+			$('#titleSection').append(title);
+			$('#textsSection').empty();
+			$('#textsSection').append(texts);
+		});
+		$('.titleBtn3').on('click', function(){
+			var title = $('.titleBtn3').text();
+			var texts = $('.userText3').text();
+			$('#titleSection').empty();
+			$('#titleSection').append(title);
+			$('#textsSection').empty();
+			$('#textsSection').append(texts);
+		});
+		$('.titleBtn4').on('click', function(){
+			var title = $('.titleBtn4').text();
+			var texts = $('.userText4').text();
+			$('#titleSection').empty();
+			$('#titleSection').append(title);
+			$('#textsSection').empty();
+			$('#textsSection').append(texts);
+		});
+		$('.titleBtn5').on('click', function(){
+			var title = $('.titleBtn5').text();
+			var texts = $('.userText5').text();
+			$('#titleSection').empty();
+			$('#titleSection').append(title);
+			$('#textsSection').empty();
+			$('#textsSection').append(texts);
+		});
+
+		function doDelete(){
+			alert('삭제 완료! 새로고침 해 주세요~(찡긋)');
+			window.history.go(1);
+		}
+		function doUpdate(){
+			alert('수정 완료! 새로고침 해 주세요~(찡긋)');
+			window.history.go(0);
+		}
+
+	</script>
+
+</body>
+</html>
+{% endblock %}
+
+
+
+
+
