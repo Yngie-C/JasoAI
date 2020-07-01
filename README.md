@@ -12,7 +12,7 @@
 
 취업 준비생 71만 시대. 취업 준비생이 자기소개서에 소비하는 시간 하루 7시간. ~
 
-이렇게 낭비되는 시간과 자원을 아끼기 위해서 자기소개서 작성을 돕는 프로그램 기획. 마침 4월 말에 SKT에서 한국어 자연어 생성 모델인 KoGPT2 모델을 공개하였고, [gyunggyung](https://github.com/gyunggyung/KoGPT2-FineTuning) 님이 작성한 Finetuning 코드를 변형하여 활용.
+이렇게 낭비되는 시간과 자원을 아끼기 위해서 자기소개서 작성을 돕는 프로그램 기획. 마침 4월 말에 SKT에서 한국어 자연어 생성 모델인 KoGPT2 모델을 공개하였고, gyunggyung 님이 작성한 [KoGPT2-Finetuning](https://github.com/gyunggyung/KoGPT2-FineTuning) 코드를 변형하여 활용.
 
 
 
@@ -189,7 +189,7 @@ requirements.txt	# 필요한 라이브러리 모음
 
 MySQL을 사용하였으며 유저 테이블, 자소서 테이블 2가지로 구성
 
-
+<p align="center"><img width="675" alt="jasoai_db" src="https://user-images.githubusercontent.com/45377884/86243769-e4453d00-bbe1-11ea-87cb-d943c6d44df4.png" style="zoom:80%;" ></p>
 
 **유저 테이블** (user_tb)
 
